@@ -1,0 +1,315 @@
+.user-management-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* HEADER */
+
+.user-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 .5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.user-management-header h1 {
+  margin: 0;
+
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.user-management-header p {
+  margin-top: 8px;
+
+  color: #666;
+}
+
+/* FILTER */
+
+.user-management-filter {
+  display: flex;
+  gap: 16px;
+
+  background: white;
+
+  padding: 20px;
+
+  border-radius: 16px;
+  box-shadow: 0 .5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.search-input,
+.role-filter {
+  padding: 12px 16px;
+
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  outline: none;
+
+  font-size: 14px;
+}
+
+.search-input {
+  flex: 1;
+}
+
+.search-input:focus,
+.role-filter:focus {
+  border-color: #ff7700;
+}
+
+/* TABLE */
+
+.table-wrapper {
+  overflow-x: auto;
+
+  background: white;
+
+  border-radius: 16px;
+  box-shadow: 0 .5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.user-table {
+  width: 100%;
+
+  border-collapse: collapse;
+}
+
+.user-table thead {
+  background: #000000;
+
+  color: white;
+}
+
+.user-table th,
+.user-table td {
+  padding: 20px;
+
+  text-align: left;
+}
+
+.user-table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.user-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.empty-data {
+  text-align: center;
+
+  padding: 32px;
+
+  color: #888;
+}
+
+/* PAGINATION */
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.pagination button {
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ff7700;
+  color: white;
+
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal-box {
+  width: 600px;
+  max-width: 90%;
+  background: #fff;
+
+  border-radius: 16px;
+  padding: 24px 28px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.delete-modal-box {
+  width: 420px;
+  background: #fff;
+
+  border-radius: 16px;
+  padding: 24px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* LABEL + INPUT */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+
+  outline: none;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+}
+
+.modal-actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-button,
+.save-button,
+.delete-confirm-button {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancel-button {
+  background: #e5e7eb;
+}
+
+.save-button {
+  background: #2563eb;
+  color: white;
+}
+
+.delete-confirm-button {
+  background: #dc2626;
+  color: white;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* ADD BUTTON */
+.add-user-button {
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.add-user-button:hover {
+  background: #1d4ed8;
+}
+
+/* EDIT BUTTON */
+.edit-button {
+  background: #f59e0b;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.edit-button:hover {
+  background: #d97706;
+}
+
+.delete-button {
+  background: #ef4444;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.delete-button:hover {
+  background: #dc2626;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}

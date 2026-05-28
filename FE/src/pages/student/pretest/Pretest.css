@@ -1,0 +1,167 @@
+/* CONTAINER */
+.pretest-container {
+  display: flex;
+  gap: 20px;
+}
+
+/* LEFT SIDE (QUESTION) */
+.pretest-left {
+  flex: 3;
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 .5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.pretest-question-title {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* OPTION */
+.pretest-option {
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+  transition: 0.2s;
+}
+
+.pretest-option:hover {
+  background: #f9f9f9;
+}
+
+.pretest-option.active {
+  background: #ffe0b2;
+}
+
+/* NAV BUTTON */
+.pretest-nav {
+  margin-top: 20px;
+}
+
+.pretest-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #ddd;
+}
+
+.pretest-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pretest-btn.next {
+  margin-left: 10px;
+}
+
+.pretest-btn.submit {
+  margin-left: 20px;
+  background: green;
+  color: #fff;
+}
+
+/* RIGHT SIDE (NUMBER) */
+.pretest-right {
+  flex: 1;
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+
+  height: fit-content;
+
+  position: sticky;
+  top: 20px;
+  box-shadow: 0 .5px 1px rgba(0, 0, 0, 0.25);
+}
+
+.pretest-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* NUMBER BOX */
+.pretest-number {
+  padding: 10px;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #eee;
+  transition: all 0.2s ease;
+}
+
+.pretest-number.active {
+  background: #ff9800;
+  color: #fff;
+}
+
+.pretest-number.answered {
+  background: #4caf50;
+  color: #fff;
+}
+
+.pretest-number:hover {
+  transform: scale(1.05);
+}
+
+.pretest-start {
+  width: 100%;
+  min-height: 80vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pretest-start-card {
+  width: 500px;
+
+  background: white;
+
+  padding: 40px;
+
+  border-radius: 16px;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+  text-align: center;
+}
+
+.pretest-start-card h1 {
+  margin-bottom: 16px;
+}
+
+.pretest-start-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.pretest-start-btn {
+  margin-top: 24px;
+
+  padding: 12px 24px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #ff7700;
+  color: white;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.pretest-start-btn:hover {
+  opacity: 0.9;
+}

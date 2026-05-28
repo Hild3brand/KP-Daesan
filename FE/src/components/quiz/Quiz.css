@@ -1,0 +1,152 @@
+.quiz-container{
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  border: 1px solid #ececec;
+  box-shadow: 0 .5px 1px rgba(0,0,0,0.08);
+}
+
+.quiz-title{
+  font-size: 30px;
+  font-weight: 700;
+  color: #ff7700;
+  margin-bottom: 28px;
+}
+
+.quiz-question{
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.question-text{
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #222;
+  margin-bottom: 22px;
+}
+
+.quiz-options{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.quiz-option{
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid #dcdcdc;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.quiz-option:hover{
+  border-color: #ff7700;
+  background: #fff5eb;
+}
+
+.quiz-option.active{
+  background: #ff7700;
+  color: white;
+  border-color: #ff7700;
+}
+
+.submit-btn{
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  background: #ff7700;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 30px;
+  transition: 0.2s;
+}
+
+.submit-btn:hover{
+  opacity: 0.92;
+}
+
+.quiz-score{
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.quiz-container{
+  width: 100%;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.quiz-question{
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+}
+
+.question-text{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.quiz-options{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quiz-option{
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+.quiz-option.active{
+  background: #ff7a00;
+  color: white;
+  border-color: #ff7a00;
+}
+
+.submit-btn{
+  margin-top: 20px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff7a00;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 768px){
+
+  .quiz-container{
+    padding: 18px;
+  }
+
+  .question-text{
+    font-size: 22px;
+  }
+
+}
