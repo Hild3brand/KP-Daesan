@@ -22,16 +22,11 @@ const migrations = [
 
   // MATERIAL
   "20260505213431_material_chunks.js",
-<<<<<<< Updated upstream
-=======
-
   // HISTORY
   "20260513175227_exercise_sessions.js",
   "20260513175317_exercise_questions.js",
   "20260513175330_exercise_options.js",
   "20260513175342_exercise_answers.js",
-
->>>>>>> Stashed changes
 ];
 
 const run = async () => {
