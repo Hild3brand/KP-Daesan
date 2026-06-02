@@ -278,7 +278,7 @@ ${w.correct_answer}
           userId,
           stageCode,
           parsed.questions.length,
-          "ongoing",
+          "in_progress",
         ]);
 
       const sessionId =
@@ -407,7 +407,7 @@ ${w.correct_answer}
         success: true,
         data: {
           id: sessionId,
-          status: "ongoing",
+          status: "in_progress",
           final_feedback: "",
           previous_answers: [],
           questions: savedQuestions,
