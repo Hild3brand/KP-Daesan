@@ -3,6 +3,7 @@ export const up = async (db) => {
     CREATE TABLE IF NOT EXISTS pretest_results (
       id INT AUTO_INCREMENT PRIMARY KEY,
       user_id VARCHAR(7) NOT NULL,
+      score int(11) NOT NULL,
       createdAt TIMESTAMP NULL,
       updatedAt TIMESTAMP NULL,
 
