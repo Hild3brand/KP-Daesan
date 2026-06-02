@@ -148,7 +148,7 @@ export const startQuiz = async (
           total_questions,
           status
         )
-        VALUES (?, ?, ?, 'ongoing')
+        VALUES (?, ?, ?, 'in_progress')
         `,
         [
           userId,
