@@ -70,91 +70,173 @@ export const checkPretest = async (req, res) => {
    SUBMIT PRETEST
 ========================= */
 export const submitPretest = async (req, res) => {
+
   const { answers } = req.body;
-  const userId = req.userId; // 🔥 aman
+  const userId = req.userId;
 
   try {
+
     if (!answers) {
-      return res.status(400).json({ message: "Answers kosong" });
-    }
 
-    const [existing] = await db.query(
-      "SELECT id FROM pretest_results WHERE user_id = ?",
-      [userId]
-    );
-
-    if (existing.length > 0) {
       return res.status(400).json({
-        message: "Pretest hanya boleh 1x",
+        message: "Answers kosong"
       });
     }
 
-    const [result] = await db.query(
-      "INSERT INTO pretest_results (user_id, createdAt) VALUES (?, NOW())",
-      [userId]
-    );
+    const [existing] =
+      await db.query(
+        `
+        SELECT id
+        FROM pretest_results
+        WHERE user_id = ?
+        `,
+        [userId]
+      );
 
-    const resultId = result.insertId;
+    if (existing.length > 0) {
 
-    const [questions] = await db.query(
-      "SELECT id, correct_answer FROM pretest_questions"
-    );
+      return res.status(400).json({
+        message: "Pretest hanya boleh 1x"
+      });
+    }
+
+    // =========================
+    // AMBIL KUNCI JAWABAN
+    // =========================
+
+    const [questions] =
+      await db.query(
+        `
+        SELECT
+          id,
+          correct_answer
+        FROM pretest_questions
+        `
+      );
 
     const qMap = {};
+
     questions.forEach((q) => {
-      qMap[q.id] = q.correct_answer;
+
+      qMap[q.id] =
+        q.correct_answer;
+
     });
+
+    // =========================
+    // HITUNG SCORE DULU
+    // =========================
 
     let correct = 0;
 
     for (let qid in answers) {
-      const qidNum = parseInt(qid);
-      const userAnswer = answers[qid];
-      const correctAnswer = qMap[qidNum];
 
-      if (!correctAnswer) continue;
+      const userAnswer =
+        answers[qid];
 
-      const isCorrect = userAnswer === correctAnswer ? 1 : 0;
-      if (isCorrect) correct++;
+      const correctAnswer =
+        qMap[qid];
 
-      await db.query(
-        `INSERT INTO pretest_answers 
-        (pretest_results_id, questions_id, user_answer, is_correct)
-        VALUES (?, ?, ?, ?)`,
-        [resultId, qidNum, userAnswer, isCorrect]
-      );
+      if (
+        userAnswer ===
+        correctAnswer
+      ) {
+
+        correct++;
+      }
     }
 
-    const total = Object.keys(answers).length;
+    const total =
+      Object.keys(answers).length;
 
     const score =
       Math.round(
         (correct / total) * 100
       );
 
-    // SIMPAN SCORE KE DATABASE
-    await db.query(
-      `
-      UPDATE pretest_results
-      SET
-        score = ?,
-        updatedAt = NOW()
-      WHERE id = ?
-      `,
-      [
-        score,
-        resultId
-      ]
-    );
+    // =========================
+    // INSERT RESULT SEKALI SAJA
+    // =========================
 
-    res.json({
-      message: "Pretest selesai",
-      score,
+    const [result] =
+      await db.query(
+        `
+        INSERT INTO pretest_results
+        (
+          user_id,
+          score,
+          createdAt
+        )
+        VALUES (?, ?, NOW())
+        `,
+        [
+          userId,
+          score
+        ]
+      );
+
+    const resultId =
+      result.insertId;
+
+    // =========================
+    // SIMPAN DETAIL JAWABAN
+    // =========================
+
+    for (let qid in answers) {
+
+      const qidNum =
+        parseInt(qid);
+
+      const userAnswer =
+        answers[qid];
+
+      const correctAnswer =
+        qMap[qidNum];
+
+      const isCorrect =
+        userAnswer === correctAnswer
+          ? 1
+          : 0;
+
+      await db.query(
+        `
+        INSERT INTO pretest_answers
+        (
+          pretest_results_id,
+          questions_id,
+          user_answer,
+          is_correct
+        )
+        VALUES (?, ?, ?, ?)
+        `,
+        [
+          resultId,
+          qidNum,
+          userAnswer,
+          isCorrect
+        ]
+      );
+    }
+
+    return res.json({
+
+      message:
+        "Pretest selesai",
+
+      score
+
     });
 
   } catch (err) {
-    console.error("🔥 ERROR SUBMIT:", err);
-    res.status(500).json({ message: err.message });
+
+    console.error(
+      "SUBMIT PRETEST ERROR:",
+      err
+    );
+
+    return res.status(500).json({
+      message: err.message
+    });
   }
 };
 
