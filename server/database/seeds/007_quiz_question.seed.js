@@ -340,7 +340,7 @@ export default async function seedQuizQuestions(db) {
       INSERT INTO quiz_questions (id, stage_code, material_code, question_text, question_type, correct_answer, question_order) 
       VALUES (?, ?, ?, ?, ?, ?, ?)
       ON DUPLICATE KEY UPDATE question_text = VALUES(question_text)
-      `,
+      `
       [q.id, q.stage_code, q.material_code, q.question_text, q.question_type, q.correct_answer, q.question_order]
     );
   }
