@@ -102,7 +102,7 @@ export const startQuiz = async (
     const [questions] = await db.query(`
       SELECT *
       FROM quiz_questions
-      WHERE TRIM(UPPER(stage_code)) = ?
+      WHERE TRIM(UPPER(stage_code)) = TRIM(UPPER(?))
       ORDER BY RAND()
       LIMIT 10
     `, [stageCode]);
