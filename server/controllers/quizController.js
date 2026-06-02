@@ -333,7 +333,7 @@ export const submitQuiz = async (
     // SCORE
     // ======================================
 
-const totalQuestions = questions.length || 10;
+    const totalQuestions = session.total_questions;
 
     const score =
       Math.round(
