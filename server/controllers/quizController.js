@@ -93,26 +93,19 @@ export const startQuiz = async (
         });
     }
 
-    const stageCode =
-      userRows[0]
-        .stage_code;
+    const stageCode = userRows[0].stage_code?.trim().toUpperCase();
 
     // ======================================
     // GET QUESTIONS
     // ======================================
 
-    const [questions] =
-      await db.query(
-        `
-        SELECT *
-        FROM quiz_questions
-        WHERE stage_code = ?
-        ORDER BY RAND()
-        LIMIT 10
-        `,
-        [stageCode]
-      );
-
+    const [questions] = await db.query(`
+      SELECT *
+      FROM quiz_questions
+      WHERE TRIM(UPPER(stage_code)) = ?
+      ORDER BY RAND()
+      LIMIT 10
+    `, [stageCode]);
     // ======================================
     // GET OPTIONS
     // ======================================
@@ -340,8 +333,7 @@ export const submitQuiz = async (
     // SCORE
     // ======================================
 
-    const totalQuestions =
-      session.total_questions || 10;
+const totalQuestions = questions.length || 10;
 
     const score =
       Math.round(
