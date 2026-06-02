@@ -6,7 +6,7 @@ import usersSeed from "./seeds/003_users.seed.js";
 import { seedQuestions } from "./seeds/004_pretest_questions.seed.js";
 import { seedOptions } from "./seeds/005_pretest_options.seed.js";
 import { seedMaterialChunks } from "./seeds/006_material_chunks.seed.js";
-import seedQuizQuestions from "./seeds/007_quiz_questions.seed.js"; 
+import seedQuizQuestions from "./seeds/007_quiz_question.seed.js"; 
 import seedQuizOptions from "./seeds/008_quiz_options.seed.js";     
 
 const runSeeds = async () => {
