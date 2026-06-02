@@ -1,6 +1,6 @@
 export const up = async (db) => {
   await db.execute(`
-    CREATE TABLE material_chunks (
+    CREATE TABLE IF NOT EXISTS material_chunks (
       code VARCHAR(20) PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
       type ENUM('concept', 'example', 'rule', 'dialogue', 'exercise', 'vocabulary') NOT NULL,
