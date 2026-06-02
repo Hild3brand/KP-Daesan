@@ -44,10 +44,10 @@ const migrations = [
   // QUIZ
   // =====================================
 
-  "20260529120000_quiz_sessions.js",
-  "20260529120010_quiz_questions.js",
-  "20260529120020_quiz_options.js",
-  "20260529120030_quiz_answers.js",
+  "20260528154739_create_quiz_sessions_table.js",
+  "20260528154746_create_quiz_questions_table.js",
+  "20260528154751_create_quiz_options_table.js",
+  "20260528154755_create_quiz_answers_table.js",
 
 ];
 
