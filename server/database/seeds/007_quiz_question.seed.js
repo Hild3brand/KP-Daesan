@@ -204,7 +204,7 @@ export default async function seedQuizQuestions(db) {
     { id: 202, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Dalam 가방이 책상 앞에 있어요 (ga-bang-i chaek-sang ap-e i-sseo-yo), 책상 앞 (chaek-sang ap) berarti ...', question_type: 'multiple_choice', correct_answer: 'A', question_order: 22 },
     { id: 203, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Pilih kalimat yang menunjukkan lokasi benda.', question_type: 'multiple_choice', correct_answer: 'C', question_order: 23 },
     { id: 204, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Pola -에 있어요 (-e i-sseo-yo) cocok dipakai saat ingin menjelaskan ...', question_type: 'multiple_choice', correct_answer: 'B', question_order: 24 },
-    { id: 205, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Perbedaan utama -에 가요 (-e ga-yo) dan -에 있어요 (-e i-sseo-yo) adalah ...', question_type: 'multiple_choice', correct_answer: 'A', question_order: 25 },,
+    { id: 205, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Perbedaan utama -에 가요 (-e ga-yo) dan -에 있어요 (-e i-sseo-yo) adalah ...', question_type: 'multiple_choice', correct_answer: 'A', question_order: 25 },
     { id: 206, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Jika ingin bertanya letak tas, kalimat yang benar adalah ...', question_type: 'multiple_choice', correct_answer: 'C', question_order: 26 },
     { id: 207, stage_code: 'U3', material_code: 'L4_C1', question_text: 'Jika ingin menjawab “Tas ada di depan meja”, kalimat yang tepat adalah ...', question_type: 'multiple_choice', correct_answer: 'A', question_order: 27 },
     { id: 208, stage_code: 'U3', material_code: 'L4_C1', question_text: '어디에 있어요? (eo-di-e i-sseo-yo?) digunakan untuk bertanya ...', question_type: 'multiple_choice', correct_answer: 'B', question_order: 28 },
@@ -340,7 +340,7 @@ export default async function seedQuizQuestions(db) {
       INSERT INTO quiz_questions (id, stage_code, material_code, question_text, question_type, correct_answer, question_order) 
       VALUES (?, ?, ?, ?, ?, ?, ?)
       ON DUPLICATE KEY UPDATE question_text = VALUES(question_text)
-      `
+      `,
       [q.id, q.stage_code, q.material_code, q.question_text, q.question_type, q.correct_answer, q.question_order]
     );
   }
