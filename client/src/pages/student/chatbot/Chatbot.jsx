@@ -486,31 +486,19 @@ const generateExercise =
 
       try {
 
-        const res =
-          await API.post(
-            "/bot/overview",
-            {},
-            {
-              headers: {
-                Authorization:
-                  `Bearer ${getToken()}`
-              }
-            }
-          );
-
-        await fetchLimiter();
-
-        setMessages((prev) => [
-          ...prev,
+        await API.post(
+          "/bot/overview",
+          {},
           {
-            sender: "bot",
-            type: "text",
-            text:
-              formatText(
-                res.data.reply
-              ),
-          },
-        ]);
+            headers: {
+              Authorization:
+                `Bearer ${getToken()}`
+            }
+          }
+        );
+
+        await fetchHistory();
+        await fetchLimiter();
 
       } catch (err) {
 

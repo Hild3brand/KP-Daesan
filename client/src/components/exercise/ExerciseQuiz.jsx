@@ -309,8 +309,10 @@ if (!question) {
 
       try {
 
-        setLoadingFeedback(
-          true
+        setLoadingFeedback(true);
+
+        await new Promise((resolve) =>
+          setTimeout(resolve, 3000)
         );
 
         const res =
@@ -584,11 +586,25 @@ const submitQuiz =
         {/* LOADING */}
 
         {loadingFeedback && (
+          <div className="loading-overlay">
+            <div className="loading-card">
 
-          <div className="feedback-loading">
-            Generating feedback...
+              <div className="feedback-spinner">
+                <span />
+                <span />
+                <span />
+              </div>
+
+              <div className="loading-title">
+                Daesan AI
+              </div>
+
+              <div className="loading-text">
+                Sedang menganalisis jawaban...
+              </div>
+
+            </div>
           </div>
-
         )}
 
         {/* MULTIPLE CHOICE */}
@@ -744,6 +760,23 @@ const submitQuiz =
               }
               placeholder="Write your answer..."
               className="essay-input"
+              style={{
+                width: "80%",
+                maxHeight: "250px",
+
+                padding: "14px",
+
+                border: "1px solid #ddd",
+                borderRadius: "12px",
+
+                fontSize: "14px",
+                fontFamily: "inherit",
+
+                resize: "vertical",
+
+                outline: "none",
+                background: "#fff",
+              }}
             />
 
             <button

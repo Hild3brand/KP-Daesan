@@ -56,29 +56,55 @@
   min-height: 0;
 }
 
-/* 🔥 MESSAGE */
-.chatbot-messages {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  min-height: 0;
+/* =========================
+   MESSAGE WRAPPER
+========================= */
 
-  /* TAMBAHAN */
-  padding-bottom: 120px;
+.chatbot-message {
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  line-height: 1.6;
+  font-size: 14px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  max-width: 75%;
+  width: fit-content;
 }
+
+/* =========================
+   USER
+========================= */
 
 .chatbot-message.user {
   background: #ff7700;
   color: white;
+
   margin-left: auto;
-  display: block;
-  width: fit-content;
+  margin-right: 0;
+
+  border-bottom-right-radius: 6px;
 }
+
+/* =========================
+   BOT
+========================= */
 
 .chatbot-message.bot {
   background: white;
+  color: #333;
+
   border: 1px solid #eee;
+
+  margin-left: 0;
   margin-right: auto;
+
+  border-bottom-left-radius: 6px;
+
+  box-shadow:
+    0 2px 8px rgba(0,0,0,.04);
 }
 
 /* 🔥 TYPING */

@@ -3,6 +3,7 @@ import { buildChatRequest } from "../services/requestBuilder.js";
 import { callHyperClova } from "../services/hyperclovaClient.js";
 import { processClovaResponse } from "../services/responseProcessor.js";
 import { logMetric } from "../utils/logger.js";
+import { buildOverviewPrompt } from "../services/hyperclova/prompts/buildOverviewPrompt.js";
 
 
 // ==========================================
@@ -454,43 +455,103 @@ export const generateOverview =
           WHERE stage_code = ?
         `, [stageCode]);
 
+      if (!stages.length) {
+
+        return res.status(404).json({
+          success: false,
+          message:
+            "Stage not found",
+        });
+      }
+
+      const stageName =
+        stages[0].stage_name;
+
       const [materials] =
         await db.query(`
-          SELECT content
+          SELECT
+            code,
+            name,
+            type,
+            content
           FROM material_chunks
           WHERE stage_code = ?
+          ORDER BY code
         `, [stageCode]);
+
+      if (!materials.length) {
+
+        return res.status(404).json({
+          success: false,
+          message:
+            "Material not found",
+        });
+      }
+
+      await saveMessage({
+        userId,
+        sender: "user",
+        message:
+          `Overview Materi ${stageCode} - ${stageName}`,
+        type: "overview_request",
+      });
 
       const materialText =
         materials
-          .map((m) => m.content)
-          .join("\n");
+          .map((material) => `
+TYPE: ${material.type}
+TITLE: ${material.name}
 
-      const prompt = `
-Buat overview pembelajaran bahasa Korea
-berdasarkan materi berikut:
+${material.content}
+`)
+          .join(
+            "\n\n====================\n\n"
+          );
 
-${materialText}
-`;
+      console.log(
+        "Stage:",
+        stageCode
+      );
 
-      const aiReply =
-        await callHyperClova({
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are Daesan AI.",
-            },
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
+      console.log(
+        "Material Count:",
+        materials.length
+      );
+
+      console.log(
+        "Material Length:",
+        materialText.length
+      );
+
+      const prompt =
+        buildOverviewPrompt({
+          stageName,
+          stageCode,
+          materialChunk:
+            materialText,
+          studentNativeLanguage:
+            "English",
         });
 
-      const result =
-        aiReply?.result
-          ?.message?.content || "";
+      const aiResponse =
+        await callHyperClova({
+          systemPrompt:
+            "You are Daesan AI, a Korean language tutor operating inside an Intelligent Tutoring System.",
+
+          userPrompt:
+            prompt,
+        });
+
+      console.log(
+        "HyperClova Response:",
+        JSON.stringify(
+          aiResponse,
+          null,
+          2
+        )
+      );
+
+      const result = aiResponse || "Overview could not be generated.";
 
       await saveMessage({
         userId,
@@ -508,6 +569,8 @@ ${materialText}
 
       console.error(
         "overview error:",
+        err.response?.data ||
+        err.message ||
         err
       );
 
