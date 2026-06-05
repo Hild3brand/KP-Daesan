@@ -33,7 +33,7 @@ export const buildChatRequest = (userMessage) => {
       { role: "system", content: systemPrompt.trim() },
       { role: "user", content: userMessage }
     ],
-    maxTokens: 1000,
-    temperature: 0.6,
+    maxTokens: 2048,
+    temperature: 0.8,
   };
 };

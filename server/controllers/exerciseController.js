@@ -13,6 +13,22 @@ import {
 } from "../services/hyperclova/prompts/buildFinalFeedbackPrompt.js";
 
 
+const saveMessage = async ({
+  userId,
+  sender,
+  message,
+  type = "chat",
+}) => {
+  await db.query(
+    `
+    INSERT INTO chat_messages
+    (user_id, sender, message_type, message)
+    VALUES (?, ?, ?, ?)
+    `,
+    [userId, sender, type, message]
+  );
+};
+
 // ======================================
 // GENERATE EXERCISE
 // ======================================
@@ -65,6 +81,14 @@ export const generateExercise =
 
       const stage =
         stages[0];
+
+      await saveMessage({
+        userId,
+        sender: "user",
+        message:
+          `Generate Exercise ${stageCode} - ${stage.stage_name}`,
+        type: "exercise_request",
+      });
 
       // =====================
       // MATERIALS
@@ -209,6 +233,11 @@ ${w.correct_answer}
 
           numQuestion,
         });
+
+      console.log(
+        "Exercise Prompt Length:",
+        exercisePrompt.length
+      );
 
       // =====================
       // AI GENERATE

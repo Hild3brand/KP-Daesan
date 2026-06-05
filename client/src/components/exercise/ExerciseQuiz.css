@@ -311,10 +311,9 @@
 /* MODERN QUIZ UI */
 /* ===================================== */
 
-.exercise-wrapper{
-  background:#f5f5f7;
-  min-height:100vh;
-  padding:40px 20px;
+.exercise-wrapper {
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 /* HEADER */
@@ -575,18 +574,10 @@
 /* ESSAY INPUT */
 /* ===================================== */
 
-.essay-input {
-  width: 100%;
-  min-height: 140px;
-  resize: vertical;
-  border: 2px solid #e5e5e5;
-  border-radius: 14px;
-  padding: 16px;
-  font-size: 15px;
-  line-height: 1.6;
-  outline: none;
-  transition: 0.2s;
-  font-family: inherit;
+textarea.essay-input {
+  width: 100% !important;
+  min-height: 120px !important;
+  border: 2px solid red !important;
 }
 
 .essay-input:focus {
@@ -627,4 +618,88 @@
 .option-explanation strong {
   display: block;
   margin-bottom: 6px;
+}
+
+/* =========================
+   FEEDBACK LOADING
+========================= */
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,.45);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 99999;
+}
+
+.loading-card {
+  width: 320px;
+
+  background: white;
+  border-radius: 20px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+}
+
+.loading-title {
+  margin-top: 16px;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #ff7700;
+}
+
+.loading-text {
+  margin-top: 8px;
+
+  color: #666;
+}
+
+.feedback-spinner {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.feedback-spinner span {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+  background: #ff7700;
+
+  animation: bounce 1.2s infinite;
+}
+
+.feedback-spinner span:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.feedback-spinner span:nth-child(3) {
+  animation-delay: .4s;
+}
+
+@keyframes bounce {
+
+  0%, 80%, 100% {
+    transform: scale(.6);
+    opacity: .4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
 }
