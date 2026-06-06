@@ -493,7 +493,7 @@ export const generateOverview =
         sender: "user",
         message:
           `Overview Materi ${stageCode} - ${stageName}`,
-        type: "overview_request",
+        type: "overview",
       });
 
       const materialText =
