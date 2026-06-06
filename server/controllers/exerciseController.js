@@ -87,7 +87,7 @@ export const generateExercise =
         sender: "user",
         message:
           `Generate Exercise ${stageCode} - ${stage.stage_name}`,
-        type: "exercise_request",
+        type: "exercise",
       });
 
       // =====================
