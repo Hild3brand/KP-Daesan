@@ -7,7 +7,7 @@ import {
 
 import API from "../../../services/api";
 
-import "Chatbot.css";
+import "./Chatbot.css";
 
 import ExerciseQuiz from "../../../components/exercise/ExerciseQuiz";
 import Quiz from "../../../components/quiz/Quiz";
